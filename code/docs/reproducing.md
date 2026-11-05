@@ -6,6 +6,14 @@ so it must be a **disposable** machine. We provide a reference VM that is exactl
 Nothing here needs any hardware; the two-Pi hardware demo is separate
 ([pi-setup.md](pi-setup.md)).
 
+> **Kernel requirement: Linux 6.18.y.** Every build, test, demo, and benchmark here
+> requires a kernel whose `uname -r` starts with `6.18`. The build **refuses** any other
+> version. This is not optional: the module is compiled against 6.18 internal kernel
+> interfaces and will not load on a different series. Two ways to get a 6.18.y machine:
+> the reference VM (section 1), or a disposable bare-metal Linux box you put a 6.18.y
+> kernel on yourself (section 1b). Use a machine you can wreck — the suite loads an
+> out-of-tree module and creates namespaces as root, host-wide.
+
 ## 1. The reference VM
 
 A ready-to-run Linux 6.18 x86-64 VM image (QEMU qcow2) with the kernel headers,
@@ -40,11 +48,45 @@ Confirm the kernel:
 uname -r        # must be 6.18.y
 ```
 
-## 2. Get the code onto the VM
+## 1b. A bare-metal Linux box (no VM)
 
-Either clone the repository inside the VM, or copy this `code/` directory in with
-`scp -P 2222 -r code testuser@127.0.0.1:~/`. The rest of this guide runs inside the VM,
-from the `code/` directory.
+Instead of the VM you can run the same scripts directly on a real Linux machine. The
+numbers are more honest this way — on real hardware with hardware-accelerated crypto the
+tunnel throughput is far higher than inside the emulated VM, where the slow figure is the
+emulator, not the VPN. The two namespace benchmarks (section 6), the test suite, and the
+demo all run here unchanged.
+
+**The machine must still be on Linux 6.18.y, and must be disposable** — the suite loads
+an out-of-tree kernel module and creates/destroys network namespaces as root, host-wide.
+Use a spare box or a fresh install, never your daily machine.
+
+```bash
+# 0. Check the kernel FIRST. It must start with 6.18 — if not, stop and install a
+#    6.18.y kernel before anything else (that is the long pole).
+uname -r
+
+# 1. Packages (Debian/Ubuntu names; use your distro's equivalents elsewhere)
+sudo apt install build-essential iperf3 iproute2 nftables python3 git \
+    linux-headers-$(uname -r) curl
+
+# 2. Rust toolchain (for the vptctl controller)
+curl https://sh.rustup.rs -sSf | sh -s -- -y
+source "$HOME/.cargo/env"
+```
+
+Then continue from section 3 (build), using the `code/` directory of your clone. The
+scripts set the disposable-machine flag for you; nothing else differs from the VM path.
+
+**Undo after a run:** stop any gateway (`sudo ./scripts/demo-netns.sh down` if a demo is
+up), remove leftover namespaces (`sudo ip netns list` then `sudo ip netns del <vpt_*>`),
+and unload the module (`sudo rmmod vpt1_foundation`). A reboot clears all of it.
+
+## 2. Get the code onto the machine
+
+On the VM: clone the repository inside it, or copy this `code/` directory in with
+`scp -P 2222 -r code testuser@127.0.0.1:~/`. On a bare-metal box: just clone it there.
+The rest of this guide runs on the 6.18.y machine (VM or bare metal), from the `code/`
+directory.
 
 ## 3. Build
 
@@ -55,7 +97,8 @@ cd code
 
 This builds the kernel module in both release and debug form (debug adds the in-kernel
 unit-test modules) and the `vptctl` controller. The build **refuses** any kernel that is
-not 6.18.y — that is expected on any other machine; use the VM.
+not 6.18.y — that is expected on any other machine; use the reference VM or a bare-metal
+box running 6.18.y (section 1 / 1b).
 
 ## 4. Run the full test suite
 
@@ -109,7 +152,7 @@ This is a build + inventory check only; the Pi runtime is in [pi-setup.md](pi-se
 
 | Symptom | What to check |
 |---|---|
-| `build refuses: requires 6.18.y` | You are not on the reference VM. Boot it (step 1). |
+| `build refuses: requires 6.18.y` | `uname -r` is not 6.18.y. Boot the reference VM (step 1) or put a 6.18.y kernel on your bare-metal box (step 1b). |
 | `insmod: Invalid parameters` on a repeat run | A previous module is still loaded: `sudo rmmod vpt1_foundation`. |
 | A test needs `vptctl` | `./scripts/build.sh` first, or let the script build it. |
 | `Permission denied` writing test objects | A prior run left root-owned build files: `sudo make -C kernel clean`. |
