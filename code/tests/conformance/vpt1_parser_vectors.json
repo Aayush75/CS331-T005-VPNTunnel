@@ -1,0 +1,160 @@
+{
+  "provenance": "Hand-transcribed VPT1 layout from TECHNICAL_DESIGN.md sections 4, 5.1 and 15. Hex prefixes are literal golden bytes; Noise/ciphertext/tag filler is not cryptographically valid. No keys or real traffic. IPv4 checksum/transport semantics are outside this parser.",
+  "vectors": [
+    {
+      "name": "init",
+      "stage": "datagram",
+      "inner_cap": 1428,
+      "hex": "56505431010000d00000000000000000000102030405060708090a0b0c0d0e0fa5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5",
+      "expected": {
+        "kind": 1,
+        "locator": 0,
+        "counter": 0
+      }
+    },
+    {
+      "name": "response",
+      "stage": "datagram",
+      "inner_cap": 1428,
+      "hex": "56505431020000a00102030405060708000102030405060708090a0b0c0d0e0f5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+      "expected": {
+        "kind": 2,
+        "locator": 72623859790382856,
+        "counter": 0
+      }
+    },
+    {
+      "name": "record_zero",
+      "stage": "datagram",
+      "inner_cap": 1428,
+      "hex": "565054310300002c01020304050607080000000000000000a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a55a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+      "expected": {
+        "kind": 3,
+        "locator": 72623859790382856,
+        "counter": 0
+      }
+    },
+    {
+      "name": "record_last",
+      "stage": "datagram",
+      "inner_cap": 1428,
+      "hex": "565054310300002c010203040506070800000000000fffffa5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a55a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+      "expected": {
+        "kind": 3,
+        "locator": 72623859790382856,
+        "counter": 1048575
+      }
+    },
+    {
+      "name": "record_max",
+      "stage": "datagram",
+      "inner_cap": 1428,
+      "hex": "56505431030005b001020304050607080000000000000001a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a55a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+      "expected": {
+        "kind": 3,
+        "locator": 72623859790382856,
+        "counter": 1
+      }
+    },
+    {
+      "name": "ipv4_min",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "010000144500001400010000401166d70a4d010a0a4d020a",
+      "expected": {
+        "subtype": 1,
+        "payload_len": 20
+      }
+    },
+    {
+      "name": "control_2",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "02000020000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "expected": {
+        "subtype": 2,
+        "payload_len": 32
+      }
+    },
+    {
+      "name": "control_3",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "03000020000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "expected": {
+        "subtype": 3,
+        "payload_len": 32
+      }
+    },
+    {
+      "name": "control_4",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "04000020000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "expected": {
+        "subtype": 4,
+        "payload_len": 32
+      }
+    },
+    {
+      "name": "control_5",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "05000020000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "expected": {
+        "subtype": 5,
+        "payload_len": 32
+      }
+    },
+    {
+      "name": "control_6",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "06000010000102030405060708090a0b0c0d0e0f",
+      "expected": {
+        "subtype": 6,
+        "payload_len": 16
+      }
+    },
+    {
+      "name": "control_7",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "07000010000102030405060708090a0b0c0d0e0f",
+      "expected": {
+        "subtype": 7,
+        "payload_len": 16
+      }
+    },
+    {
+      "name": "control_8",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "08000030000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+      "expected": {
+        "subtype": 8,
+        "payload_len": 48
+      }
+    },
+    {
+      "name": "control_9",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "09000030000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f",
+      "expected": {
+        "subtype": 9,
+        "payload_len": 48
+      }
+    },
+    {
+      "name": "control_10",
+      "stage": "plaintext",
+      "inner_cap": 1428,
+      "hex": "0a000020000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f",
+      "expected": {
+        "subtype": 10,
+        "payload_len": 32
+      }
+    }
+  ]
+}

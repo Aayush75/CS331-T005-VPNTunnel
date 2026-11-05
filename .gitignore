@@ -1,0 +1,57 @@
+# Build output (kernel module, Rust controller)
+code/kernel/**/*.o
+code/kernel/**/*.ko
+code/kernel/**/*.mod
+code/kernel/**/*.mod.c
+code/kernel/**/*.cmd
+code/kernel/**/.*.cmd
+code/kernel/**/modules.order
+code/kernel/**/Module.symvers
+code/kernel/**/*.a
+code/control/target/
+code/control/**/*.rs.bk
+
+# Generated identities and runtime state (never commit keys)
+code/**/keys/
+code/**/*.key
+/run/
+
+# Gateway / AP / controller run files (VPT_RUN_DIR can point into the tree)
+run-*/
+vpt-gateway/
+vpt-ap/
+controller.log
+controller.pid
+hostapd.conf
+hostapd.pid
+dnsmasq.pid
+*.log
+*.pid
+*.sock
+
+# Test / QEMU run output (smoke and kernel-suite logs + their JSON summaries)
+code/**/*-qemu*.log
+code/**/*-qemu*.json
+
+# Results, captures, benchmark output
+code/results/*
+!code/results/.gitkeep
+code/captures/*
+!code/captures/.gitkeep
+*.pcap
+*.pcapng
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+*.swp
+*~
+.DS_Store
+.vscode/
+.idea/
+
+# Core dumps
+core
+vgcore.*

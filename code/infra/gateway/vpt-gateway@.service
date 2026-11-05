@@ -1,0 +1,35 @@
+# Start a gateway's VPN at boot, and stop it cleanly. One instance per configuration file:
+#
+#   sudo install -m 0644 infra/gateway/vpt-gateway@.service /etc/systemd/system/
+#   sudo install -d /etc/vpntunnel        # put the configuration here as /etc/vpntunnel/NAME.toml
+#   sudo systemctl enable --now vpt-gateway@pi-a      # uses /etc/vpntunnel/pi-a.toml
+#
+# The unit runs infra/gateway/vpt-gateway.sh, so start and stop do exactly what `up` and `down` do
+# by hand. Adjust the paths to where the files really are. Install `vpt-gateway.sh` and `mss-clamp.nft`
+# together in /usr/local/lib/vpt1. Checked with `systemd-analyze verify` and started and stopped on the x86-64
+# reference VM with dummy interfaces; not run on a Pi.
+#
+# Order: the network must be there first (a Wi-Fi access point, if the LAN interface is one, is started
+# separately with vpt-ap.sh and should be listed in After= below once it has a unit).
+[Unit]
+Description=VPT1 VPN gateway (%i)
+After=network.target
+Wants=network.target
+ConditionPathExists=/etc/vpntunnel/%i.toml
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+Environment=VPTCTL=/usr/local/bin/vptctl
+Environment=VPT1_MODULE=/usr/local/lib/vpt1/vpt1_foundation.ko
+Environment=VPT_RUN_DIR=/run/vpt-gateway
+# No --wait: if the other gateway is not up yet the controller keeps retrying by itself, and boot must not fail.
+ExecStart=/usr/local/lib/vpt1/vpt-gateway.sh up /etc/vpntunnel/%i.toml
+ExecStop=/usr/local/lib/vpt1/vpt-gateway.sh down /etc/vpntunnel/%i.toml
+# Also after a failed start or a killed service: `down` is safe to run twice.
+ExecStopPost=/usr/local/lib/vpt1/vpt-gateway.sh down /etc/vpntunnel/%i.toml
+TimeoutStartSec=60
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,1041 @@
+[gateway]
+name = "gw"
+private_key_file = "@KEY@"
+lan_interface = "lan0"
+lan_address = "10.77.1.1/24"
+underlay_interface = "out0"
+underlay_address = "172.31.250.11/24"
+
+[[peer]]
+name = "peer0"
+slot = 1
+public_key = "ad8cbe47dec1eb6f5491880eb2612ef18d42b3c667c7b165c4047437fb86861f"
+endpoint = "172.31.250.12"
+role = "initiator"
+path_mtu = 1500
+prefixes = ["10.77.2.0/24"]
+
+[[rule]]
+id = 1
+peer = "peer0"
+source = "10.77.1.2/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1001"
+
+[[rule]]
+id = 2
+peer = "peer0"
+source = "10.77.1.3/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1002"
+
+[[rule]]
+id = 3
+peer = "peer0"
+source = "10.77.1.4/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1003"
+
+[[rule]]
+id = 4
+peer = "peer0"
+source = "10.77.1.5/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1004"
+
+[[rule]]
+id = 5
+peer = "peer0"
+source = "10.77.1.6/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1005"
+
+[[rule]]
+id = 6
+peer = "peer0"
+source = "10.77.1.7/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1006"
+
+[[rule]]
+id = 7
+peer = "peer0"
+source = "10.77.1.8/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1007"
+
+[[rule]]
+id = 8
+peer = "peer0"
+source = "10.77.1.9/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1008"
+
+[[rule]]
+id = 9
+peer = "peer0"
+source = "10.77.1.10/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1009"
+
+[[rule]]
+id = 10
+peer = "peer0"
+source = "10.77.1.11/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1010"
+
+[[rule]]
+id = 11
+peer = "peer0"
+source = "10.77.1.12/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1011"
+
+[[rule]]
+id = 12
+peer = "peer0"
+source = "10.77.1.13/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1012"
+
+[[rule]]
+id = 13
+peer = "peer0"
+source = "10.77.1.14/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1013"
+
+[[rule]]
+id = 14
+peer = "peer0"
+source = "10.77.1.15/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1014"
+
+[[rule]]
+id = 15
+peer = "peer0"
+source = "10.77.1.16/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1015"
+
+[[rule]]
+id = 16
+peer = "peer0"
+source = "10.77.1.17/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1016"
+
+[[rule]]
+id = 17
+peer = "peer0"
+source = "10.77.1.18/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1017"
+
+[[rule]]
+id = 18
+peer = "peer0"
+source = "10.77.1.19/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1018"
+
+[[rule]]
+id = 19
+peer = "peer0"
+source = "10.77.1.20/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1019"
+
+[[rule]]
+id = 20
+peer = "peer0"
+source = "10.77.1.21/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1020"
+
+[[rule]]
+id = 21
+peer = "peer0"
+source = "10.77.1.22/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1021"
+
+[[rule]]
+id = 22
+peer = "peer0"
+source = "10.77.1.23/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1022"
+
+[[rule]]
+id = 23
+peer = "peer0"
+source = "10.77.1.24/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1023"
+
+[[rule]]
+id = 24
+peer = "peer0"
+source = "10.77.1.25/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1024"
+
+[[rule]]
+id = 25
+peer = "peer0"
+source = "10.77.1.26/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1025"
+
+[[rule]]
+id = 26
+peer = "peer0"
+source = "10.77.1.27/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1026"
+
+[[rule]]
+id = 27
+peer = "peer0"
+source = "10.77.1.28/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1027"
+
+[[rule]]
+id = 28
+peer = "peer0"
+source = "10.77.1.29/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1028"
+
+[[rule]]
+id = 29
+peer = "peer0"
+source = "10.77.1.30/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1029"
+
+[[rule]]
+id = 30
+peer = "peer0"
+source = "10.77.1.31/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1030"
+
+[[rule]]
+id = 31
+peer = "peer0"
+source = "10.77.1.32/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1031"
+
+[[rule]]
+id = 32
+peer = "peer0"
+source = "10.77.1.33/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1032"
+
+[[rule]]
+id = 33
+peer = "peer0"
+source = "10.77.1.34/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1033"
+
+[[rule]]
+id = 34
+peer = "peer0"
+source = "10.77.1.35/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1034"
+
+[[rule]]
+id = 35
+peer = "peer0"
+source = "10.77.1.36/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1035"
+
+[[rule]]
+id = 36
+peer = "peer0"
+source = "10.77.1.37/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1036"
+
+[[rule]]
+id = 37
+peer = "peer0"
+source = "10.77.1.38/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1037"
+
+[[rule]]
+id = 38
+peer = "peer0"
+source = "10.77.1.39/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1038"
+
+[[rule]]
+id = 39
+peer = "peer0"
+source = "10.77.1.40/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1039"
+
+[[rule]]
+id = 40
+peer = "peer0"
+source = "10.77.1.41/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1040"
+
+[[rule]]
+id = 41
+peer = "peer0"
+source = "10.77.1.42/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1041"
+
+[[rule]]
+id = 42
+peer = "peer0"
+source = "10.77.1.43/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1042"
+
+[[rule]]
+id = 43
+peer = "peer0"
+source = "10.77.1.44/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1043"
+
+[[rule]]
+id = 44
+peer = "peer0"
+source = "10.77.1.45/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1044"
+
+[[rule]]
+id = 45
+peer = "peer0"
+source = "10.77.1.46/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1045"
+
+[[rule]]
+id = 46
+peer = "peer0"
+source = "10.77.1.47/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1046"
+
+[[rule]]
+id = 47
+peer = "peer0"
+source = "10.77.1.48/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1047"
+
+[[rule]]
+id = 48
+peer = "peer0"
+source = "10.77.1.49/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1048"
+
+[[rule]]
+id = 49
+peer = "peer0"
+source = "10.77.1.50/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1049"
+
+[[rule]]
+id = 50
+peer = "peer0"
+source = "10.77.1.51/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1050"
+
+[[rule]]
+id = 51
+peer = "peer0"
+source = "10.77.1.52/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1051"
+
+[[rule]]
+id = 52
+peer = "peer0"
+source = "10.77.1.53/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1052"
+
+[[rule]]
+id = 53
+peer = "peer0"
+source = "10.77.1.54/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1053"
+
+[[rule]]
+id = 54
+peer = "peer0"
+source = "10.77.1.55/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1054"
+
+[[rule]]
+id = 55
+peer = "peer0"
+source = "10.77.1.56/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1055"
+
+[[rule]]
+id = 56
+peer = "peer0"
+source = "10.77.1.57/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1056"
+
+[[rule]]
+id = 57
+peer = "peer0"
+source = "10.77.1.58/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1057"
+
+[[rule]]
+id = 58
+peer = "peer0"
+source = "10.77.1.59/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1058"
+
+[[rule]]
+id = 59
+peer = "peer0"
+source = "10.77.1.60/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1059"
+
+[[rule]]
+id = 60
+peer = "peer0"
+source = "10.77.1.61/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1060"
+
+[[rule]]
+id = 61
+peer = "peer0"
+source = "10.77.1.62/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1061"
+
+[[rule]]
+id = 62
+peer = "peer0"
+source = "10.77.1.63/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1062"
+
+[[rule]]
+id = 63
+peer = "peer0"
+source = "10.77.1.64/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1063"
+
+[[rule]]
+id = 64
+peer = "peer0"
+source = "10.77.1.65/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1064"
+
+[[rule]]
+id = 65
+peer = "peer0"
+source = "10.77.1.66/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1065"
+
+[[rule]]
+id = 66
+peer = "peer0"
+source = "10.77.1.67/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1066"
+
+[[rule]]
+id = 67
+peer = "peer0"
+source = "10.77.1.68/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1067"
+
+[[rule]]
+id = 68
+peer = "peer0"
+source = "10.77.1.69/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1068"
+
+[[rule]]
+id = 69
+peer = "peer0"
+source = "10.77.1.70/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1069"
+
+[[rule]]
+id = 70
+peer = "peer0"
+source = "10.77.1.71/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1070"
+
+[[rule]]
+id = 71
+peer = "peer0"
+source = "10.77.1.72/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1071"
+
+[[rule]]
+id = 72
+peer = "peer0"
+source = "10.77.1.73/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1072"
+
+[[rule]]
+id = 73
+peer = "peer0"
+source = "10.77.1.74/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1073"
+
+[[rule]]
+id = 74
+peer = "peer0"
+source = "10.77.1.75/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1074"
+
+[[rule]]
+id = 75
+peer = "peer0"
+source = "10.77.1.76/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1075"
+
+[[rule]]
+id = 76
+peer = "peer0"
+source = "10.77.1.77/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1076"
+
+[[rule]]
+id = 77
+peer = "peer0"
+source = "10.77.1.78/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1077"
+
+[[rule]]
+id = 78
+peer = "peer0"
+source = "10.77.1.79/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1078"
+
+[[rule]]
+id = 79
+peer = "peer0"
+source = "10.77.1.80/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1079"
+
+[[rule]]
+id = 80
+peer = "peer0"
+source = "10.77.1.81/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1080"
+
+[[rule]]
+id = 81
+peer = "peer0"
+source = "10.77.1.82/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1081"
+
+[[rule]]
+id = 82
+peer = "peer0"
+source = "10.77.1.83/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1082"
+
+[[rule]]
+id = 83
+peer = "peer0"
+source = "10.77.1.84/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1083"
+
+[[rule]]
+id = 84
+peer = "peer0"
+source = "10.77.1.85/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1084"
+
+[[rule]]
+id = 85
+peer = "peer0"
+source = "10.77.1.86/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1085"
+
+[[rule]]
+id = 86
+peer = "peer0"
+source = "10.77.1.87/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1086"
+
+[[rule]]
+id = 87
+peer = "peer0"
+source = "10.77.1.88/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1087"
+
+[[rule]]
+id = 88
+peer = "peer0"
+source = "10.77.1.89/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1088"
+
+[[rule]]
+id = 89
+peer = "peer0"
+source = "10.77.1.90/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1089"
+
+[[rule]]
+id = 90
+peer = "peer0"
+source = "10.77.1.91/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1090"
+
+[[rule]]
+id = 91
+peer = "peer0"
+source = "10.77.1.92/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1091"
+
+[[rule]]
+id = 92
+peer = "peer0"
+source = "10.77.1.93/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1092"
+
+[[rule]]
+id = 93
+peer = "peer0"
+source = "10.77.1.94/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1093"
+
+[[rule]]
+id = 94
+peer = "peer0"
+source = "10.77.1.95/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1094"
+
+[[rule]]
+id = 95
+peer = "peer0"
+source = "10.77.1.96/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1095"
+
+[[rule]]
+id = 96
+peer = "peer0"
+source = "10.77.1.97/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1096"
+
+[[rule]]
+id = 97
+peer = "peer0"
+source = "10.77.1.98/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1097"
+
+[[rule]]
+id = 98
+peer = "peer0"
+source = "10.77.1.99/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1098"
+
+[[rule]]
+id = 99
+peer = "peer0"
+source = "10.77.1.100/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1099"
+
+[[rule]]
+id = 100
+peer = "peer0"
+source = "10.77.1.101/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1100"
+
+[[rule]]
+id = 101
+peer = "peer0"
+source = "10.77.1.102/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1101"
+
+[[rule]]
+id = 102
+peer = "peer0"
+source = "10.77.1.103/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1102"
+
+[[rule]]
+id = 103
+peer = "peer0"
+source = "10.77.1.104/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1103"
+
+[[rule]]
+id = 104
+peer = "peer0"
+source = "10.77.1.105/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1104"
+
+[[rule]]
+id = 105
+peer = "peer0"
+source = "10.77.1.106/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1105"
+
+[[rule]]
+id = 106
+peer = "peer0"
+source = "10.77.1.107/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1106"
+
+[[rule]]
+id = 107
+peer = "peer0"
+source = "10.77.1.108/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1107"
+
+[[rule]]
+id = 108
+peer = "peer0"
+source = "10.77.1.109/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1108"
+
+[[rule]]
+id = 109
+peer = "peer0"
+source = "10.77.1.110/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1109"
+
+[[rule]]
+id = 110
+peer = "peer0"
+source = "10.77.1.111/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1110"
+
+[[rule]]
+id = 111
+peer = "peer0"
+source = "10.77.1.112/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1111"
+
+[[rule]]
+id = 112
+peer = "peer0"
+source = "10.77.1.113/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1112"
+
+[[rule]]
+id = 113
+peer = "peer0"
+source = "10.77.1.114/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1113"
+
+[[rule]]
+id = 114
+peer = "peer0"
+source = "10.77.1.115/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1114"
+
+[[rule]]
+id = 115
+peer = "peer0"
+source = "10.77.1.116/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1115"
+
+[[rule]]
+id = 116
+peer = "peer0"
+source = "10.77.1.117/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1116"
+
+[[rule]]
+id = 117
+peer = "peer0"
+source = "10.77.1.118/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1117"
+
+[[rule]]
+id = 118
+peer = "peer0"
+source = "10.77.1.119/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1118"
+
+[[rule]]
+id = 119
+peer = "peer0"
+source = "10.77.1.120/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1119"
+
+[[rule]]
+id = 120
+peer = "peer0"
+source = "10.77.1.121/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1120"
+
+[[rule]]
+id = 121
+peer = "peer0"
+source = "10.77.1.122/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1121"
+
+[[rule]]
+id = 122
+peer = "peer0"
+source = "10.77.1.123/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1122"
+
+[[rule]]
+id = 123
+peer = "peer0"
+source = "10.77.1.124/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1123"
+
+[[rule]]
+id = 124
+peer = "peer0"
+source = "10.77.1.125/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1124"
+
+[[rule]]
+id = 125
+peer = "peer0"
+source = "10.77.1.126/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1125"
+
+[[rule]]
+id = 126
+peer = "peer0"
+source = "10.77.1.127/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1126"
+
+[[rule]]
+id = 127
+peer = "peer0"
+source = "10.77.1.128/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1127"
+
+[[rule]]
+id = 128
+peer = "peer0"
+source = "10.77.1.129/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "1128"
+

@@ -1,0 +1,25 @@
+[gateway]
+name = "gw"
+private_key_file = "@KEY@"
+lan_interface = "lan0"
+lan_address = "10.77.1.1/24"
+underlay_interface = "out0"
+underlay_address = "172.31.250.11/24"
+
+[[peer]]
+name = "peer0"
+slot = 1
+public_key = "ad8cbe47dec1eb6f5491880eb2612ef18d42b3c667c7b165c4047437fb86861f"
+endpoint = "172.31.250.12"
+role = "initiator"
+path_mtu = 1280
+prefixes = ["10.77.2.0/24"]
+
+[[rule]]
+id = 1
+peer = "peer0"
+source = "10.77.1.10/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "8080"
+

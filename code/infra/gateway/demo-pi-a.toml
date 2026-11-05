@@ -1,0 +1,74 @@
+# Raspberry Pi gateway A for the two-Pi demo: every laptop on this Pi's Wi-Fi network can reach every
+# laptop on the other Pi's network while the VPN is on, and none can when it is off.
+#
+# The public keys below are the sample values from control/examples; generate real ones on each Pi:
+#   vptctl genkey --out /etc/vpntunnel/gw-a.key     (prints the public key to hand to the other Pi)
+# and replace the peer's `public_key`. `lan_interface` is the Wi-Fi access-point interface and
+# `underlay_interface` the Ethernet port with the cable to the other Pi.
+#
+# Start and stop with: infra/gateway/vpt-gateway.sh up|down THIS_FILE
+[gateway]
+name = "pi-a"
+private_key_file = "/etc/vpntunnel/gw-a.key"
+lan_interface = "wlan0"
+lan_address = "10.77.1.1/24"
+underlay_interface = "eth0"
+underlay_address = "172.31.250.11/24"
+
+[[peer]]
+name = "pi-b"
+slot = 1
+public_key = "ad8cbe47dec1eb6f5491880eb2612ef18d42b3c667c7b165c4047437fb86861f"
+endpoint = "172.31.250.12"
+role = "initiator"
+path_mtu = 1500
+prefixes = ["10.77.2.0/24"]
+
+# Policy: whole-network rules, so any laptop address the Pi's DHCP hands out is covered.
+# Both directions are listed on both Pis; every other flow stays denied.
+
+[[rule]]
+id = 1
+peer = "pi-b"
+source = "10.77.1.0/24"
+destination = "10.77.2.0/24"
+protocol = "icmp-echo"
+
+[[rule]]
+id = 2
+peer = "pi-b"
+source = "10.77.2.0/24"
+destination = "10.77.1.0/24"
+protocol = "icmp-echo"
+
+[[rule]]
+id = 3
+peer = "pi-b"
+source = "10.77.1.0/24"
+destination = "10.77.2.0/24"
+protocol = "tcp"
+ports = "1-65535"
+
+[[rule]]
+id = 4
+peer = "pi-b"
+source = "10.77.2.0/24"
+destination = "10.77.1.0/24"
+protocol = "tcp"
+ports = "1-65535"
+
+[[rule]]
+id = 5
+peer = "pi-b"
+source = "10.77.1.0/24"
+destination = "10.77.2.0/24"
+protocol = "udp"
+ports = "1-65535"
+
+[[rule]]
+id = 6
+peer = "pi-b"
+source = "10.77.2.0/24"
+destination = "10.77.1.0/24"
+protocol = "udp"
+ports = "1-65535"

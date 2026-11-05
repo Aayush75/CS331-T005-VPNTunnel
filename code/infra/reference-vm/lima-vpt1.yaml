@@ -1,0 +1,34 @@
+# macOS (Lima) template for the x86-64 reference image.
+#
+# Lima cannot fetch the Google Drive share link, so download the image first
+# (MANIFEST.md) and keep it at the path below, or override it:
+#
+#   limactl create --name=vpt1-ref infra/reference-vm/lima-vpt1.yaml
+#   limactl create --name=vpt1-ref \
+#     --set '.images[0].location = "/path/to/vpt1-ref-6.18-x86_64.qcow2"' \
+#     infra/reference-vm/lima-vpt1.yaml
+#   limactl start vpt1-ref && limactl shell vpt1-ref
+#
+# Apple Silicon runs this guest under QEMU TCG emulation and needs
+# `brew install qemu lima-additional-guestagents`. It is a functional environment
+# only, never a performance baseline (TEAM_WORK_PLAN.md section 6). Lima copies
+# the image, so the downloaded master stays unmodified, and logs in as your
+# macOS user through cloud-init, not as `testuser`.
+vmType: "qemu"
+arch: "x86_64"
+cpus: 2
+memory: "4GiB"
+disk: "20GiB"
+
+images:
+  - location: "~/VMs/vpt1-ref/vpt1-ref-6.18-x86_64.qcow2"
+    arch: "x86_64"
+    digest: "sha256:f015bc123731185c5f6db9c3673a86a1c45cffd92ca39811a3dffad27497cc88"
+
+# No host mounts: copy sources in (limactl copy, scp) so fixture runs never
+# touch host files and builds use the guest filesystem.
+mounts: []
+
+containerd:
+  system: false
+  user: false

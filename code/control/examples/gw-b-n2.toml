@@ -1,0 +1,66 @@
+# Sample Gateway B for the independent-peer (N2) fixture: peers A and C
+# (TECHNICAL_DESIGN.md section 2).
+# The public keys are sample values only; their private halves were discarded.
+# Fixture runs generate fresh identities with `vptctl genkey`.
+
+[gateway]
+name = "gw-b"
+private_key_file = "/etc/vpntunnel/gw-b.key"
+lan_interface = "lan0"
+lan_address = "10.77.2.1/24"
+underlay_interface = "out0"
+underlay_address = "172.31.250.12/24"
+
+[[peer]]
+name = "gw-a"
+slot = 1
+public_key = "f9847a3c511bc563898a6a50e31a72e3815d6cfcc0f3840a456ad48d06aa9005"
+endpoint = "172.31.250.11"
+role = "responder"
+path_mtu = 1500
+prefixes = ["10.77.1.0/24"]
+
+[[peer]]
+name = "gw-c"
+slot = 2
+public_key = "857ff999c0de2e500c2546598d4d91912a49991b0c761b8fe01eb2b0783ce441"
+endpoint = "172.31.250.13"
+role = "responder"
+path_mtu = 1500
+prefixes = ["10.77.3.0/24"]
+
+# Rules 1-3 admit flows initiated from A, as in gw-b.toml.
+
+[[rule]]
+id = 1
+peer = "gw-a"
+source = "10.77.1.10/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "8080"
+
+[[rule]]
+id = 2
+peer = "gw-a"
+source = "10.77.1.11/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "8080"
+
+[[rule]]
+id = 3
+peer = "gw-a"
+source = "10.77.1.11/32"
+destination = "10.77.2.11/32"
+protocol = "tcp"
+ports = "8080"
+
+# C -> B allowed; C -> B2 denied (no rule).
+
+[[rule]]
+id = 4
+peer = "gw-c"
+source = "10.77.3.10/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "8080"

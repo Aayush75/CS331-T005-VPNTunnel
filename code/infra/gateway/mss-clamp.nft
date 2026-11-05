@@ -1,0 +1,20 @@
+# TCP MSS clamp for the tunnel device, for every gateway.
+#
+# The tunnel adds 72 bytes to each packet, so vpn0's MTU is 1428 on a 1500 byte underlay.
+# TCP normally finds that out from the ICMP "fragmentation needed" the gateway sends back, but
+# a firewall that drops ICMP (or a host that ignores it) turns that into a path-MTU black hole:
+# the handshake succeeds and the first full-size segment never arrives. Clamping the MSS of
+# every SYN that leaves through vpn0 to the route MTU (1428 - 40 = 1388) removes the dependency.
+# Measured in tests/netns/ay2_controller.py: an 8 MiB download stalls with ICMP dropped and no
+# clamp, and completes with this rule.
+#
+#   nft -f infra/gateway/mss-clamp.nft
+#
+# The clamp covers both directions of a connection: the client's SYN leaves its own gateway
+# through vpn0, and the server's SYN-ACK leaves the other gateway through vpn0.
+table inet vpt_mss {
+	chain clamp {
+		type filter hook forward priority mangle; policy accept;
+		oifname "vpn0" tcp flags syn tcp option maxseg size set rt mtu
+	}
+}

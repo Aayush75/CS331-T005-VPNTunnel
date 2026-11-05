@@ -1,0 +1,46 @@
+# Sample Gateway B for the core fixture (TECHNICAL_DESIGN.md section 2).
+# The public keys are sample values only; their private halves were discarded.
+# Fixture runs generate fresh identities with `vptctl genkey`.
+
+[gateway]
+name = "gw-b"
+private_key_file = "/etc/vpntunnel/gw-b.key"
+lan_interface = "lan0"
+lan_address = "10.77.2.1/24"
+underlay_interface = "out0"
+underlay_address = "172.31.250.12/24"
+
+[[peer]]
+name = "gw-a"
+slot = 1
+public_key = "f9847a3c511bc563898a6a50e31a72e3815d6cfcc0f3840a456ad48d06aa9005"
+endpoint = "172.31.250.11"
+role = "responder"
+path_mtu = 1500
+prefixes = ["10.77.1.0/24"]
+
+# Same rule IDs as gw-a; here they admit flows initiated by the peer.
+
+[[rule]]
+id = 1
+peer = "gw-a"
+source = "10.77.1.10/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "8080"
+
+[[rule]]
+id = 2
+peer = "gw-a"
+source = "10.77.1.11/32"
+destination = "10.77.2.10/32"
+protocol = "tcp"
+ports = "8080"
+
+[[rule]]
+id = 3
+peer = "gw-a"
+source = "10.77.1.11/32"
+destination = "10.77.2.11/32"
+protocol = "tcp"
+ports = "8080"
