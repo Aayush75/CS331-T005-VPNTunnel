@@ -98,3 +98,44 @@ with and without the tunnel). Record `ethtool eth0` for the cable speed.
 - `iperf3 -O 2` omits the first 2 seconds (TCP ramp-up); several runs give a spread.
 - The baseline and tunnel use the identical topology and hosts, so their difference is
   attributable to the tunnel rather than to routing.
+
+## CPU evidence for every experiment
+
+Capture whole-system and per-logical-CPU counters for every new benchmark or demo,
+including **both Pi gateways** during physical runs. Controller process CPU alone
+omits kernel/softirq work. On Linux, the standalone monitor needs only Python 3:
+
+```bash
+python3 tools/cpu_monitor.py --output results/pi-a-cpu --seconds 3600
+```
+
+Start it on Pi A and Pi B before the experiment (use distinct output directories),
+and stop it with Ctrl-C after the experiment. Save a separate idle observation and
+record experiment start/end UTC times so raw samples can be aligned. Capture laptop
+CPU separately when access and operating-system tooling permit. Keep the same power,
+CPU-governor and offload settings for compared configurations, and record temperatures
+and throttling on the Pis. Do not present whole-system CPU as VPN-exclusive cost.
+
+`cpu.json` retains 0.5-second `/proc/stat` per-core snapshots and NET_RX/NET_TX
+softirq counts. `summary.json` includes host busy percentage, busy logical-CPU
+equivalents, per-core usage and softirq CPU time. Busy excludes idle and iowait;
+guest fields are not double-counted. Background activity and generators are included.
+
+For native namespace CPU repeats and matched bidirectional link-capacity experiments:
+
+```bash
+sudo VPTCTL="$PWD/control/target/release/vptctl" \
+  python3 tools/bench_capacity_cpu.py --output results/cpu-capacity-new-evidence/run
+python3 tools/summarize_capacity_cpu.py results/cpu-capacity-new-evidence
+```
+
+The summarizer expects an evidence directory containing the benchmark output as its
+`run/` subdirectory. Use a new directory per run. The harness runs five
+TCP transfers per direction with 15 measured seconds each; CPU samples accompany
+every TCP/UDP transfer. Controlled capacities are 100/500/1000/2500 Mbit/s, with
+UDP at 50/80/95% in both directions. Idle and loaded RTT are saved separately.
+
+Shaping uses TBF on each underlay bridge egress port, so encrypted outer headers
+consume capacity. The controlled lane disables TSO/GSO/GRO on every virtual Ethernet
+interface for both configurations, retaining MTU/offload records and qdisc counters.
+The unrestricted lane retains defaults. These lanes must be labelled separately.

@@ -1,0 +1,13 @@
+[Unit]
+Description=VPTunnel Pi benchmark inner address
+After=network.target
+ConditionPathExists=/etc/vpntunnel/side
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/lib/vpt1/benchmark-net.sh up
+ExecStop=/usr/local/lib/vpt1/benchmark-net.sh down
+
+[Install]
+WantedBy=multi-user.target

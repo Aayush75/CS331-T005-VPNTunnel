@@ -134,7 +134,7 @@ up)
     chmod 700 "${RUN_DIR}"
     : >"${LOGFILE}"
 
-    if ! lsmod | grep -q '^vpt1_foundation '; then
+    if [ ! -d /sys/module/vpt1_foundation ]; then
         [ -n "${VPT1_MODULE:-}" ] || { echo "vpt-gateway: module not loaded and VPT1_MODULE not set" >&2; exit 2; }
         modprobe chacha20poly1305
         modprobe -q udp_tunnel || true

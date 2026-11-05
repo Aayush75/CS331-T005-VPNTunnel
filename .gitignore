@@ -8,6 +8,8 @@ code/kernel/**/.*.cmd
 code/kernel/**/modules.order
 code/kernel/**/Module.symvers
 code/kernel/**/*.a
+code/tests/unit/*.o
+code/tests/unit/.*.cmd
 code/control/target/
 code/control/**/*.rs.bk
 
@@ -33,9 +35,7 @@ dnsmasq.pid
 code/**/*-qemu*.log
 code/**/*-qemu*.json
 
-# Results, captures, benchmark output
-code/results/*
-!code/results/.gitkeep
+# Captures
 code/captures/*
 !code/captures/.gitkeep
 *.pcap
@@ -55,3 +55,8 @@ __pycache__/
 # Core dumps
 core
 vgcore.*
+
+# Track only ZIP archives under benchmark results, including nested folders.
+/code/results/**
+!/code/results/**/
+!/code/results/**/*.zip

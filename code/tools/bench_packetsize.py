@@ -48,12 +48,13 @@ def udp_size_point(size, seconds, rate_mbit):
         r = B.host("ha", "iperf3", "-c", HB, "-B", HA, "-u", "-l", str(size),
                    "-b", f"{rate_mbit}M", "-t", str(seconds), "-J", timeout=seconds + 20)
         data = json.loads(r.stdout) if r.stdout.strip().startswith("{") else {}
-        end = data.get("end", {}).get("sum", {})
+        end = data.get("end", {}).get("sum_received", {})
         if not end:
             return None
         return dict(size=size, mbps=round(end.get("bits_per_second", 0) / 1e6, 1),
                     loss_pct=round(end.get("lost_percent", 0), 2),
-                    pps=round(end.get("packets", 0) / max(seconds, 1)))
+                    pps=round((end.get("packets", 0) - end.get("lost_packets", 0))
+                              / max(end.get("seconds", seconds), 1e-9)))
     finally:
         srv.terminate()
         try:

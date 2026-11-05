@@ -30,3 +30,7 @@ with [`code/README.md`](code/README.md) for the overview and
 
 This is an educational system qualified within a documented operating envelope, not
 a production VPN.
+
+Native-hardware benchmark tables, CPU measurements, figures, and reproduction files
+are included in the [native-system results archive](code/results/report-results/native-benchmarks-2026-11-06.zip)
+and [physical Pi results archive](code/results/report-results/pi-physical-results-2026-11-06.zip).

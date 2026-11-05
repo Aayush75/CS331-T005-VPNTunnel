@@ -71,6 +71,7 @@ the demo with `./scripts/pi-demo.sh`. Full hardware setup is in
 - [`docs/testing.md`](docs/testing.md) — what each test covers and how to run a single one.
 - [`docs/benchmarking.md`](docs/benchmarking.md) — what the benchmarks measure and how to read the numbers.
 - [`docs/pi-setup.md`](docs/pi-setup.md) — the two-Pi hardware demonstration, step by step.
+- [`docs/pi-benchmark.md`](docs/pi-benchmark.md) — prepared direct-Ethernet Pi benchmark, endpoint addresses, start/stop helpers, and CPU capture.
 - [`docs/security.md`](docs/security.md) — the security model, what it protects, and its limits.
 
 ## Requirements
