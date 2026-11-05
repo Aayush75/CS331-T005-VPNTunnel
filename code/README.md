@@ -48,9 +48,10 @@ sudo ./scripts/demo-netns.sh  # the before/after demo, in network namespaces
 ## Benchmarks
 
 ```bash
-sudo ./scripts/bench-netns.sh         # tunnel vs direct baseline (throughput, RTT, UDP loss)
+sudo ./scripts/bench-netns.sh         # tunnel vs no-tunnel, one machine in namespaces (needs iperf3)
 sudo ./scripts/bench-packetsize.sh    # goodput vs datagram size (overhead and MTU effect)
 ./scripts/bench-pi.sh <laptop-B-ip>   # physical two-Pi path, run from laptop A
+./scripts/bench-pi-direct.sh          # raw Pi-to-Pi cable baseline (no tunnel), run on Pi A
 ```
 
 Results land under `results/<timestamp>-*/summary.md`.

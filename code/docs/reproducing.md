@@ -129,13 +129,17 @@ is about, with no hardware.
 ## 6. Benchmarks
 
 ```bash
-sudo ./scripts/bench-netns.sh         # tunnel vs a direct no-tunnel baseline
+sudo apt install iperf3                # once; NOT preinstalled on the VM (needs internet)
+sudo ./scripts/bench-netns.sh         # tunnel vs a no-tunnel baseline, one machine
 sudo ./scripts/bench-packetsize.sh    # goodput vs datagram size
 ```
 
-Results land under `results/<timestamp>-*/summary.md`. See
-[benchmarking.md](benchmarking.md) for what they measure. These need `iperf3`
-(preinstalled on the VM).
+Both run entirely inside network namespaces on this one machine: no Pis, no Wi-Fi, no
+cable. Results land under `results/<timestamp>-*/summary.md`. See
+[benchmarking.md](benchmarking.md) for what they measure.
+
+The two hardware benchmarks (`bench-pi.sh`, `bench-pi-direct.sh`) need the two-Pi setup;
+see [pi-setup.md](pi-setup.md) and [benchmarking.md](benchmarking.md).
 
 ## 7. ARM64 / Raspberry Pi build check (optional, no hardware)
 

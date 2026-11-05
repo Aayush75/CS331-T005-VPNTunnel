@@ -113,6 +113,7 @@ laptop A.
 ## 6. Benchmark the physical path (optional)
 
 See [benchmarking.md](benchmarking.md) — `scripts/bench-pi.sh` run from laptop A.
+The raw cable baseline (no tunnel) is `scripts/bench-pi-direct.sh`, run on Pi A.
 
 ## Notes and limits
 

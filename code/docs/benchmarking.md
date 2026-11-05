@@ -1,10 +1,13 @@
 # Benchmarking
 
-Three benchmarks, all writing a JSON file and a Markdown `summary.md` under
-`results/<timestamp>-*/`. The two namespace benchmarks are fully reproducible on the
-reference VM with no hardware; the Pi benchmark needs the two-Pi setup.
+Four benchmarks, each writing a Markdown `summary.md` (the namespace ones also JSON) under
+`results/<timestamp>-*/`. The two namespace benchmarks run on **one machine** inside
+network namespaces (no Pis, no Wi-Fi, no cable) and are fully reproducible on a Linux
+6.18.y machine; the two Pi benchmarks need the two-Pi setup.
 
-All need `iperf3` (preinstalled on the VM). Run the namespace ones as root.
+All need `iperf3`. It is **not** preinstalled on the reference VM: install it first with
+`sudo apt install iperf3` (the VM needs internet access for this). Run the namespace
+ones as root.
 
 ## 1. Throughput and latency — `scripts/bench-netns.sh`
 
@@ -65,6 +68,28 @@ speed (`ethtool eth0`) alongside the numbers: Wi-Fi throughput varies with signa
 contention, so a single run is not a stable figure. Run it once with the VPN up (numbers)
 and once with the VPN down at the Pis (the transfers fail — that is the isolation half of
 the demo, not a benchmark value).
+
+## 4. Two-Pi direct baseline — `scripts/bench-pi-direct.sh`
+
+The reference for benchmark 3. It measures Pi A to Pi B over the Ethernet cable alone,
+with no tunnel, no Wi-Fi and no laptops, so it shows what the physical link can carry.
+Run it on Pi A; Pi B runs a persistent server (no restarts between runs):
+
+```bash
+# Pi B
+iperf3 -s -B 172.31.250.12
+# Pi A
+./scripts/bench-pi-direct.sh [PI_B_IP] [PI_A_IP] [--runs 5] [--seconds 20]
+```
+
+Defaults are the cable addresses from [pi-setup.md](pi-setup.md) (`172.31.250.11` and
+`.12`). These are underlay addresses, so the traffic never enters the tunnel whether the
+VPN is up or down. It reports ping RTT and TCP goodput in both directions.
+
+**How to read it.** Benchmark 3 crosses Wi-Fi twice, the cable, and the tunnel; this one
+crosses only the cable. Their difference is therefore tunnel cost *plus* Wi-Fi, not
+tunnel cost alone. For the tunnel's cost in isolation, use benchmark 1 (same topology
+with and without the tunnel). Record `ethtool eth0` for the cable speed.
 
 ## Method notes to report
 

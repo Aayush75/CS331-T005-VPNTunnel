@@ -34,7 +34,9 @@ sha256sum vpt1-ref-6.18-x86_64.qcow2
 - Matching kernel headers, build symlink, and `Module.symvers`.
 - Crypto AEAD `rfc7539(chacha20,poly1305)` (12-byte IV, 16-byte tag).
 - `nftables` (with `nft_ct`), `iproute2` (`ip netns`), `conntrack-tools`.
-- `tcpdump`, `ethtool`, `iw`, `kmod`; `gcc`, `make`, `python3`; `iperf3`.
+- `tcpdump`, `ethtool`, `iw`, `kmod`; `gcc`, `make`, `python3`.
+- `iperf3` is **not** in the image; the benchmarks need it (`sudo apt install iperf3`,
+  which needs the VM to have internet access).
 - A Rust toolchain for `vptctl`.
 
 ## Running
